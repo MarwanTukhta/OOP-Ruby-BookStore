@@ -1,6 +1,6 @@
 require 'Book_store.rb'
 
-class Books
+class Books < Storeitem
   attr_accessor :author_name,:number_of_pages,:isbn
 
   def initilize(title,price,author_name,number_of_pages,isbn)
