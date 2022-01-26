@@ -1,14 +1,25 @@
-class Magazine
+require 'Book_store.rb'
+require 'fileutils'
+
+class Magazine < Storeitem
+  attr_accessor :publisher_agent,:date
+
     def initilize(title,price,publisher_agent,date)
-      @title = title
-      @price = price
+      super(title,price)
       @publisher_agent = publisher_agent
       @date = date   
     end
-     def getmagazine()
-       magazine = {1:{title: "Software Magazine", price: "13", publisher_agent: "IEEE", date: "20-1-2022" },
-                2:{title: "Communications of the ACM", price: "80", publisher_agent: "ACM", date: "14-6-2021" },
-                3:{title: "eLearn", price: "50", publisher_agent: "ACM", date: "12-1-2021" }
-      }
-     end
+    
+    def deleteMagazine()
+      open('Magazine.txt', 'r') do |f|
+        open('Magazine.txt.tmp', 'w') do |f2|
+          f.each_line do |line|
+             f2.write(line) unless line.start_with? @title
+            end
+          end
+      end
+        
+      FileUtils.mv 'Magazine.txt.tmp', 'Magazine.txt'
+    end
+
    end
