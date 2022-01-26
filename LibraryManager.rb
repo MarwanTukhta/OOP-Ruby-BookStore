@@ -19,6 +19,10 @@ class LibraryManager
     def getMagazinesByDate(date)
         return @magazines.select {|e| e.date == date}
     end
+
+    def getMagazinesByPublisher(publisher)
+        return @magazines.select {|e| e.publisher_agent == publisher}
+    end
     
     def deleteMagazine(title)
         magazine = @magazines.select {|e| e.title == title}
@@ -45,7 +49,7 @@ class LibraryManager
     end
 
     def addBooks(title, price, author_name, number_of_pages, isbn)
-        new_books = Books.new(title,price,publisher_agent,date)
+        new_books = Books.new(title, price, author_name, number_of_pages, isbn)
         new_books.addToDB
         updateBooks()
     end
@@ -57,31 +61,33 @@ class LibraryManager
         file_data.each{|e|
             if e != ""
                 booksArr = e.split(",")
-                books = Books.new(booksArr[0], booksArr[1], booksArr[2], booksArr[3])
+                books = Books.new(booksArr[0], booksArr[1], booksArr[2], booksArr[3], booksArr[4])
                 @books.push(books)
             end
         }
         file.close
     end
     def deleteBook(title)
-        book = @book.select {|e| e.title == title}
+        book = @books.select {|e| e.title == title}
         if book.length == 0
             return "error"
         else
             book[0].delete
-            updateBook()
+            updateBooks()
         end
     end
     
     
-    def mostExpensiveBook(price)
-
-        return @books.select { e["price"].max()}
+    def mostExpensiveBook()
+        return @books.max_by(5) {|e| e.price.to_i}
     end
 
-    def range(from,to)
-            
-        return @books.select { e["price"].between?(from,to) }
+    def mostExpensiveMagazine()
+        return @magazines.max_by(5) {|e| e.price.to_i}
+    end
+
+    def range(from,to)   
+        return @books.select {|e| e.price.to_i.between?(from.to_i,to.to_i) }
     end
         
      

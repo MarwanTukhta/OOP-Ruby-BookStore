@@ -1,9 +1,9 @@
-require 'Book_store.rb'
+require_relative 'Book_store.rb'
 require 'fileutils'
 class Books < Storeitem
   attr_accessor :author_name,:number_of_pages,:isbn
 
-  def initilize(title,price,author_name,number_of_pages,isbn)
+  def initialize(title,price,author_name,number_of_pages,isbn)
     super(title,price)
     @author_name = author_name
     @number_of_pages = number_of_pages
