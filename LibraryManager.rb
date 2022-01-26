@@ -2,27 +2,42 @@ require_relative 'Magazine.rb'
 
 
 class LibraryManager
+    attr_accessor :magazines
+    def initialize()
+        updateMagazines()
+    end
+
     def addMagazine(title, price, publisher_agent, date)
-        magazinee = Magazine.new(title,price,publisher_agent,date)
-        magazinee.addToDB
+        new_magazine = Magazine.new(title,price,publisher_agent,date)
+        new_magazine.addToDB
+        updateMagazines()
     end
 
     def getMagazinesByDate(date)
+        return @magazines.select {|e| e.date == date}
+    end
+    
+    def deleteMagazine(title)
+        magazine = @magazines.select {|e| e.title == title}
+        if magazine.length == 0
+            return "error"
+        else
+            magazine[0].delete
+            updateMagazines()
+        end
+    end
+
+    def updateMagazines()
         file = File.open("Magazine.txt")
         file_data = file.readlines.map(&:chomp)
-        magazines = []
+        @magazines = []
         file_data.each{|e|
             if e != ""
                 magazineArr = e.split(",")
-                magazine = Hash.new()
-                magazine["title"] = magazineArr[0]
-                magazine["price"] = magazineArr[1]
-                magazine["publisher-agent"] = magazineArr[2]
-                magazine["date"] = magazineArr[3]
-                magazines.push(magazine)
+                magazine = Magazine.new(magazineArr[0], magazineArr[1], magazineArr[2], magazineArr[3])
+                @magazines.push(magazine)
             end
         }
-        return magazines.select {|e| e["date"] == date}
+        file.close
     end
-    
 end

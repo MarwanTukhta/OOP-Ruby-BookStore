@@ -19,3 +19,6 @@ file_data.each{|e|
 }
 
 file.close
+
+
+p magazines.select {|e| e["title"] == 'title'}
