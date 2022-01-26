@@ -1,7 +1,7 @@
 class Storeitem
-    attr_accessor :title :price
+    attr_accessor :title, :price
     
-    def initilize(title,price)
+    def initialize(title,price)
         @title = title
         @price = price
     end
