@@ -16,5 +16,4 @@ in order to run this project please do the following steps
 
 This app was written by
 
-Marwan Tukhta @MarwanTukhta
-Bayader Alomari @bayader93
+Marwan Tukhta [@MarwanTukhta](https://github.com/MarwanTukhta) & Bayader Alomari [@bayader93](https://github.com/bayader93)
