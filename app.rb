@@ -133,12 +133,12 @@ f.button("Delete An Item") {
         deleteBook = Flammarion::Engraving.new
         deleteBook.puts "Delete Book"
         title = ""
-        deleteBook.input("Title") {|msg| title = msg['text']}
-
+        deleteBook.dropdown(libraryManager.books.map {|e| e.title}) {|msg| title = msg['text']}
+        
         deleteBook.button("Delete Book") {
             msg = libraryManager.deleteBook(title)
             if msg == "error"
-                deleteBook.puts "The Book #{title} doesn't exist"
+                deleteBook.puts "The Book #{title} doesn't exist".red
             else
                 deleteBook.puts "The Book #{title} has been deleted"
             end
@@ -149,13 +149,11 @@ f.button("Delete An Item") {
         deleteMagazine = Flammarion::Engraving.new
         deleteMagazine.puts "Delete Magazine"
         title = ""
-
-        deleteMagazine.input("Title") {|msg| title = msg['text']}
-
+        deleteMagazine.dropdown(libraryManager.magazines.map {|e| e.title}) {|msg| title = msg['text']}
         deleteMagazine.button("Delete Magazine") {
             msg = libraryManager.deleteMagazine(title)
             if msg == "error"
-                deleteMagazine.puts "The Magazine #{title} doesn't exist"
+                deleteMagazine.puts "The Magazine #{title} doesn't exist".red
             else
                 deleteMagazine.puts "The Magazine #{title} has been deleted"
             end        }
