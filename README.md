@@ -23,3 +23,6 @@ ruby app.rb
 This app was written by
 
 Marwan Tukhta [@MarwanTukhta](https://github.com/MarwanTukhta) & Bayader Alomari [@bayader93](https://github.com/bayader93)
+
+
+[Evaluation Video](https://www.youtube.com/watch?v=hLpzrXDzxZ0)
