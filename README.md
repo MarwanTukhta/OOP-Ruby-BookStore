@@ -3,16 +3,22 @@
 in order to run this project please do the following steps
 
 1- install flammarion using
-        gem install flammarion
-
-2- install electron using
-        npm install electron --save-dev
-
-3- run
-        ruby app.rb
-
-
-
+``` 
+gem install flammarion
+```
+2- install colorized
+```
+gem install colorized
+```
+3- install electron using
+``` 
+npm install electron --save-dev
+```
+4- run
+``` 
+ruby app.rb
+```
+        
 
 This app was written by
 
